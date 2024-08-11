@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 01, 2022 at 11:36 AM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.9
+-- Generation Time: Aug 11, 2024 at 04:08 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,7 +35,7 @@ CREATE TABLE `tblattendance` (
   `aDate` date NOT NULL,
   `CreatedAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `UpdatedAt` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tblattendance`
@@ -73,7 +73,11 @@ INSERT INTO `tblattendance` (`aId`, `scId`, `ctId`, `aStatus`, `aDate`, `Created
 (29, 1, 1, 'present', '2022-07-21', '2022-06-21 18:11:35', '0000-00-00'),
 (30, 2, 1, 'present', '2022-07-21', '2022-06-21 18:11:35', '0000-00-00'),
 (31, 3, 1, 'present', '2022-07-21', '2022-06-21 18:11:35', '0000-00-00'),
-(32, 4, 1, 'present', '2022-07-21', '2022-06-21 18:11:35', '0000-00-00');
+(32, 4, 1, 'present', '2022-07-21', '2022-06-21 18:11:35', '0000-00-00'),
+(33, 1, 1, 'absent', '2024-08-09', '2024-08-09 16:54:44', '0000-00-00'),
+(34, 2, 1, 'present', '2024-08-09', '2024-08-09 16:54:44', '0000-00-00'),
+(35, 3, 1, 'leave', '2024-08-09', '2024-08-09 16:54:44', '0000-00-00'),
+(36, 4, 1, 'present', '2024-08-09', '2024-08-09 16:54:44', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -85,7 +89,7 @@ CREATE TABLE `tblclass` (
   `clId` int(11) NOT NULL,
   `cllName` varchar(50) NOT NULL,
   `clStatus` int(2) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tblclass`
@@ -108,7 +112,7 @@ CREATE TABLE `tblclassassignteacher` (
   `ctId` int(11) NOT NULL,
   `clId` int(10) UNSIGNED NOT NULL,
   `tId` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tblclassassignteacher`
@@ -128,7 +132,7 @@ INSERT INTO `tblclassassignteacher` (`ctId`, `clId`, `tId`) VALUES
 CREATE TABLE `tblrole` (
   `rId` int(11) NOT NULL,
   `rName` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tblrole`
@@ -151,17 +155,17 @@ CREATE TABLE `tblstudentclass` (
   `stId` int(10) UNSIGNED NOT NULL,
   `clId` int(10) UNSIGNED NOT NULL,
   `scCurrentYear` year(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tblstudentclass`
 --
 
 INSERT INTO `tblstudentclass` (`scId`, `stId`, `clId`, `scCurrentYear`) VALUES
-(1, 1, 5, 2016),
-(2, 2, 5, 2016),
-(3, 3, 5, 2016),
-(4, 7, 5, 2016);
+(1, 1, 5, '2016'),
+(2, 2, 5, '2016'),
+(3, 3, 5, '2016'),
+(4, 7, 5, '2016');
 
 -- --------------------------------------------------------
 
@@ -181,7 +185,7 @@ CREATE TABLE `tblstudents` (
   `stAddress` varchar(50) NOT NULL,
   `stImage` varchar(200) NOT NULL,
   `stStatus` int(2) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tblstudents`
@@ -212,7 +216,7 @@ CREATE TABLE `tblteachers` (
   `tAddress` varchar(50) NOT NULL,
   `tStatus` int(2) NOT NULL DEFAULT 1,
   `rId` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tblteachers`
@@ -277,7 +281,7 @@ ALTER TABLE `tblteachers`
 -- AUTO_INCREMENT for table `tblattendance`
 --
 ALTER TABLE `tblattendance`
-  MODIFY `aId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `aId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `tblclass`
@@ -313,7 +317,7 @@ ALTER TABLE `tblstudents`
 -- AUTO_INCREMENT for table `tblteachers`
 --
 ALTER TABLE `tblteachers`
-  MODIFY `tId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `tId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
